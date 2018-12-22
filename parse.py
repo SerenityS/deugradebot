@@ -9,7 +9,7 @@ for line in lines:
     login_data.append(line)
 f.close()
 
-res = requests.post("http://smartcampus.deu.ac.kr/auth/user/loginAuth", data={'entryA': login_data[0], 'entryB': login_data[1], 'strongbox': 'deusmartcampus', 'ip': 'dummy'})
+res = requests.post("http://smartcampus.deu.ac.kr/auth/user/loginAuth", data={'entryA': login_data[0], 'entryB': login_data[1], 'strongbox': 'deusmartcampus'})
 
 res = BeautifulSoup(res.text, "lxml")
 name = res.findAll("suser_nm")
