@@ -1,7 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
+from login_data import login_data
 
-def get_score_data(login_data):
+def get_score_data():
     with requests.Session() as s:
         jboss = s.post("http://smartcampus.deu.ac.kr/auth/user/loginAuth", data={'entryA': login_data[2], 'entryB': login_data[3], 'strongbox': 'deusmartcampus'})
 
@@ -18,7 +19,12 @@ def get_score_data(login_data):
 
         score = BeautifulSoup(res.text, "lxml")
         score_data = score.find_all(class_="info_box1")
-        subj_data = []
-        for data in score_data:
-            subj_data.append(data.find_all("td"))
-        return subj_data
+
+        grade_data = []; temp = []
+        for subj_data in score_data:
+            subj_data = subj_data.find_all("td")
+            for data in subj_data:
+                temp.append(data.text)
+            grade_data.append(temp)
+            temp = []
+        return grade_data
