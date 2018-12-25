@@ -396,8 +396,10 @@ class des(_baseDes):
 	# Initialisation
 	def __init__(self, key, mode=ECB, IV=None, pad=None, padmode=PAD_NORMAL):
 		# Sanity checking of arguments.
+		'''
 		if len(key) != 8:
 			raise ValueError("Invalid DES key size. Key must be exactly 8 bytes long.")
+		'''
 		_baseDes.__init__(self, mode, IV, pad, padmode)
 		self.key_size = 8
 
