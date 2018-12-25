@@ -12,9 +12,9 @@ chat_id = bot_data[1]
 
 data = get_score_data()
 
-for i in range(0, 7):
-    if data[i][6] != '':
-        if not os.path.exists(data[i][0]):
-            send_message(data[i])
-            with open(data[i][0], 'w') as f:
+for subj_data in data:
+    if subj_data[6] != '':
+        if not os.path.exists(subj_data[0]):
+            send_message(subj_data)
+            with open(subj_data[0], 'w') as f:
                 f.close()
